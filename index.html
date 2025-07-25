@@ -4,22 +4,12 @@
   <meta charset="UTF-8" />
   <title>Be My Girlfriend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: #fff0f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       text-align: center;
-      overflow: hidden;
-    }
-
-    .container {
-      padding: 30px;
+      padding: 50px;
     }
 
     h1 {
@@ -28,22 +18,18 @@
       margin-bottom: 40px;
     }
 
-    .valentine-button, .no-button {
+    .valentine-button {
       display: inline-block;
       padding: 18px 36px;
       font-size: 1.5em;
       font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #ff4d6d, #d63384);
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .valentine-button {
-      color: #fff;
-      background: linear-gradient(135deg, #ff4d6d, #d63384);
       box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
+      transition: all 0.3s ease;
     }
 
     .valentine-button:hover {
@@ -54,7 +40,14 @@
     .no-button {
       background: #e63946;
       color: #fff;
+      padding: 18px 36px;
+      font-size: 1.5em;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
       margin-left: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     .no-button:hover {
@@ -63,22 +56,8 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Will you be my girlfriend? <i class="fas fa-heart"></i></h1>
-    <button class="valentine-button" onclick="alert('Yaaay! I love you! 🥰💘')">Yes</button>
-    <button class="no-button" id="noButton" onclick="alert('Too late! You have no choice 😎')">No</button>
-  </div>
-
-  <script>
-    const noButton = document.getElementById('noButton');
-
-    noButton.addEventListener('mouseover', () => {
-      const x = Math.floor(Math.random() * (window.innerWidth - 150));
-      const y = Math.floor(Math.random() * (window.innerHeight - 100));
-      noButton.style.position = 'absolute';
-      noButton.style.left = `${x}px`;
-      noButton.style.top = `${y}px`;
-    });
-  </script>
+  <h1>Will you be my girlfriend? ❤️</h1>
+  <button class="valentine-button" onclick="alert('Yaaay! I love you! 🥰💘')">Yes</button>
+  <button class="no-button" onclick="alert('Too late! You have no choice 😎')">No</button>
 </body>
 </html>
