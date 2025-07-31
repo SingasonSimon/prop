@@ -126,6 +126,7 @@
       25% { opacity:1; }
       100% { transform:translateY(-100vh); opacity:0; }
     }
+
     #audioControl {
       position:fixed; bottom:20px; right:20px;
       background:rgba(255,255,255,0.2); border:none;
@@ -177,11 +178,11 @@ Let’s keep driving each other crazy — in all the right ways 💕💖</div>
       for (let i = 0; i < 40; i++) {
         const h = document.createElement('div');
         h.className = 'heart';
-        h.style.setProperty('--size', ${10 + Math.random() * 20}px);
-        h.style.setProperty('--color', hsl(${Math.random()*360}, 70%, 60%));
-        h.style.left = ${Math.random()*100}vw;
-        h.style.top  = ${Math.random()*100}vh;
-        h.style.setProperty('--delay', ${Math.random()*2}s);
+        h.style.setProperty('--size', `${10 + Math.random() * 20}px`);
+        h.style.setProperty('--color', `hsl(${Math.random()*360}, 70%, 60%)`);
+        h.style.left = `${Math.random()*100}vw`;
+        h.style.top  = `${Math.random()*100}vh`;
+        h.style.setProperty('--delay', `${Math.random()*2}s`);
         document.body.appendChild(h);
       }
     }, 9000);
@@ -193,7 +194,7 @@ Let’s keep driving each other crazy — in all the right ways 💕💖</div>
         const c = document.createElement('div');
         c.className = 'confetti';
         c.style.setProperty('--conf-color', colors[i % colors.length]);
-        c.style.setProperty('--left', ${Math.random()*100}vw);
+        c.style.setProperty('--left', `${Math.random()*100}vw`);
         document.body.appendChild(c);
       }
     }, 13000);
@@ -204,10 +205,10 @@ Let’s keep driving each other crazy — in all the right ways 💕💖</div>
         const s = document.createElement('div');
         s.className = 'star';
         const size = Math.random() * 3 + 2;
-        s.style.setProperty('--size', ${size}px);
-        s.style.left = ${Math.random()*100}vw;
-        s.style.top = ${Math.random()*100}vh;
-        s.style.setProperty('--duration', ${6 + Math.random()*4}s);
+        s.style.setProperty('--size', `${size}px`);
+        s.style.left = `${Math.random()*100}vw`;
+        s.style.top = `${Math.random()*100}vh`;
+        s.style.setProperty('--duration', `${6 + Math.random()*4}s`);
         document.body.appendChild(s);
       }
     }
@@ -215,4 +216,4 @@ Let’s keep driving each other crazy — in all the right ways 💕💖</div>
     generateStars();
   </script>
 </body>
-</html>
+  </html>
