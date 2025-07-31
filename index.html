@@ -2,225 +2,217 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Will You Be My Girlfriend?</title>
+  <title>Happy Birthday Scott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
   <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #000;
-      color: #ffb6c1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      height:100vh;
+      background: linear-gradient(180deg, #1a001a 0%, #000 100%);
+      font-family:'Poppins', sans-serif;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      color:white;
+    }
+    .text {
+      position:absolute;
+      font-size:6em;
+      opacity:0;
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      animation: fadeOut 1s ease forwards;
+    }
+    /* Countdown styling */
+    .text:nth-child(1) { animation-delay:0s;  color:#ff4c4c; }
+    .text:nth-child(2) { animation-delay:1s;  color:#ff7f50; }
+    .text:nth-child(3) { animation-delay:2s;  color:#ffbf00; }
+    .text:nth-child(4) { animation-delay:3s;  color:#9acd32; }
+    .text:nth-child(5) { animation-delay:4s;  color:#00ced1; }
+    .text:nth-child(6) { animation-delay:5s;  color:#1e90ff; }
+    .text:nth-child(7) { animation-delay:6s;  color:#9370db; }
+    .text:nth-child(8) { animation-delay:7s;  color:#ff69b4; }
+    .text:nth-child(9) { animation-delay:8s;  color:#fff;    }
+
+    /* Birthday Message */
+    .text:nth-child(10) {
+      font-size:3.5em;
+      color:#ff69b4;
+      animation: fadeInOut 2s ease forwards;
+      animation-delay:9s;
+    }
+    .text:nth-child(11) {
+      font-size:1.5em;
+      color:#ffb6c1;
+      text-shadow: 0 0 10px rgba(255,182,193,0.7);
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay:12s;
     }
 
-    .card {
-      text-align: center;
-      padding: 30px;
-      max-width: 90%;
-      width: 400px;
-      border-radius: 20px;
-      z-index: 2;
+    @keyframes fadeOut {
+      0%   { opacity:0; transform:scale(1); }
+      20%  { opacity:1; transform:scale(1.3); }
+      80%  { opacity:1; }
+      100% { opacity:0; transform:scale(0.8); }
     }
-
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #ff69b4;
-      transition: opacity 0.6s ease-in-out;
+    @keyframes fadeIn {
+      from { opacity:0; transform:scale(0.8); }
+      to   { opacity:1; transform:scale(1); }
     }
-
-    .changing-message {
-      font-size: 1.3rem;
-      min-height: 40px;
-      margin-bottom: 25px;
-      transition: opacity 0.5s ease-in-out;
-      color: #ff69b4;
-    }
-
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-    }
-
-    button {
-      padding: 14px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s;
-    }
-
-    #yesBtn {
-      background: linear-gradient(45deg, #ff69b4, #ff85c1);
-      color: white;
-      box-shadow: 0 0 10px #ff69b4;
-    }
-
-    #yesBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #ff85c1;
-    }
-
-    #noBtn {
-      background: #ff4d4d;
-      color: white;
-      position: absolute; /* Keep this */
-      /* Removed top, left, and transform for initial centering */
-      padding: 14px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      z-index: 1;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #ff69b4;
-    }
-
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
+    @keyframes fadeInOut {
+      0%   { opacity:0; transform:scale(0.8); }
+      25%  { opacity:1; transform:scale(1); }
+      75%  { opacity:1; transform:scale(1); }
+      100% { opacity:0; transform:scale(0.8); }
     }
 
     .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: url('https://emoji.gg/assets/emoji/2725-pink-heart.png') no-repeat center/cover;
-      animation: float 8s infinite ease-in-out;
+      position:absolute;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--color);
+      transform:rotate(45deg);
+      animation: floatHeart 4s linear infinite;
+      opacity:0;
+      animation-delay: var(--delay);
+    }
+    .heart::before, .heart::after {
+      content:"";
+      position:absolute;
+      width:var(--size);
+      height:var(--size);
+      background-color:var(--color);
+      border-radius:50%;
+    }
+    .heart::before { top:-50%; left:0; }
+    .heart::after  { left:-50%; top:0; }
+
+    @keyframes floatHeart {
+      0%   { transform:translateY(0) rotate(45deg); opacity:0; }
+      10%  { opacity:1; }
+      50%  { opacity:0; }
+      100% { transform:translateY(-600px) rotate(45deg); opacity:0; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(100vh); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-10vh); opacity: 0; }
+    .confetti {
+      position:absolute;
+      width:6px; height:10px;
+      background-color:var(--conf-color);
+      top: -10px;
+      left: var(--left);
+      opacity:0.8;
+      animation: fall 3s linear forwards;
     }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotateZ(360deg); opacity:0; }
+    }
+
+    /* Floating stars */
+    .star {
+      position:absolute;
+      width:var(--size);
+      height:var(--size);
+      background: radial-gradient(circle, white 40%, transparent 70%);
+      border-radius:50%;
+      opacity:0.7;
+      animation: starFloat var(--duration) linear infinite;
+    }
+
+    @keyframes starFloat {
+      0% { transform:translateY(0); opacity:0.2; }
+      25% { opacity:1; }
+      100% { transform:translateY(-100vh); opacity:0; }
+    }
+    #audioControl {
+      position:fixed; bottom:20px; right:20px;
+      background:rgba(255,255,255,0.2); border:none;
+      color:white; padding:10px 15px; border-radius:8px;
+      cursor:pointer; font-size:1em; backdrop-filter:blur(5px);
+      transition:transform .2s;
+    }
+    #audioControl:hover { transform:scale(1.1); }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1 id="questionText">Will you be my girlfriend, Minnie?</h1>
-    <div id="messageBox" class="changing-message"></div>
 
-    <div class="btn-container">
-      <button id="yesBtn">❤️ Yes! 💕</button>
-    </div>
+  <!-- Countdown -->
+  <div class="text">9</div>
+  <div class="text">8</div>
+  <div class="text">7</div>
+  <div class="text">6</div>
+  <div class="text">5</div>
+  <div class="text">4</div>
+  <div class="text">3</div>
+  <div class="text">2</div>
+  <div class="text">1</div>
 
-    <div class="footer">Made with 💖 for someone special</div>
-  </div>
+  <!-- Messages -->
+  <div class="text">🎉 Happy happy girlfriend's day! 🎉</div>
+  <div class="text">Happy Girlfriend’s Day 😘
+You're my favorite distraction,
+my best decision,
+and the reason I smile like an idiot 😏
+Let’s keep driving each other crazy — in all the right ways 💕💖</div>
 
-  <button id="noBtn">No 😢</button>
-
-  <div class="hearts" id="hearts"></div>
+  <!-- Audio Control -->
+  <button id="audioControl">🔇 Mute</button>
 
   <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const hearts = document.getElementById('hearts');
-    const messageBox = document.getElementById('messageBox');
-    const questionText = document.getElementById('questionText');
+    const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.play().catch(() => {});  // autoplay may require user interaction
 
-    const messages = [
-      "Are you sure?? 😭",
-      "Please reconsider 😭💔",
-      "You’d break my heart 🫠",
-      "You're my only choice! 😩",
-      "You're the one, Minnie 🥺",
-      "Love has no escape 💘",
-      "You can’t resist this charm 😉",
-      "I'll keep asking! 💌",
-      "You're the goal of my heart ⚽❤️",
-      "Only one choice left 👀",
-      "System error 🥹 Accepting is mandatory 💯"
-    ];
+    const btn = document.getElementById('audioControl');
+    btn.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      btn.textContent = audio.muted ? '🔊 Unmute' : '🔇 Mute';
+    });
 
-    let msgIndex = 0;
+    // Hearts after 9s
+    setTimeout(() => {
+      for (let i = 0; i < 40; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.style.setProperty('--size', ${10 + Math.random() * 20}px);
+        h.style.setProperty('--color', hsl(${Math.random()*360}, 70%, 60%));
+        h.style.left = ${Math.random()*100}vw;
+        h.style.top  = ${Math.random()*100}vh;
+        h.style.setProperty('--delay', ${Math.random()*2}s);
+        document.body.appendChild(h);
+      }
+    }, 9000);
 
-    function moveNoBtnAndChangeMessage() {
-      // Ensure any existing transform is cleared so top/left can take full effect
-      noBtn.style.transform = "none";
+    // Confetti after message
+    setTimeout(() => {
+      const colors = ['#f44336','#ffeb3b','#4caf50','#2196f3','#e91e63'];
+      for (let i = 0; i < 100; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.setProperty('--conf-color', colors[i % colors.length]);
+        c.style.setProperty('--left', ${Math.random()*100}vw);
+        document.body.appendChild(c);
+      }
+    }, 13000);
 
-      const yesRect = yesBtn.getBoundingClientRect();
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight;
-      const safeDistance = 100; // Minimum distance from the Yes button
-
-      let x, y;
-
-      do {
-        x = Math.random() * maxX;
-        y = Math.random() * maxY;
-      } while (
-        // Check if the generated position makes the 'No' button too close to 'Yes'
-        x < yesRect.right + safeDistance &&
-        x + noBtn.offsetWidth > yesRect.left - safeDistance &&
-        y < yesRect.bottom + safeDistance &&
-        y + noBtn.offsetHeight > yesRect.top - safeDistance
-      );
-
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-
-      messageBox.textContent = messages[msgIndex % messages.length];
-      msgIndex++;
+    // Floating stars (continuous)
+    function generateStars(count = 60) {
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = Math.random() * 3 + 2;
+        s.style.setProperty('--size', ${size}px);
+        s.style.left = ${Math.random()*100}vw;
+        s.style.top = ${Math.random()*100}vh;
+        s.style.setProperty('--duration', ${6 + Math.random()*4}s);
+        document.body.appendChild(s);
+      }
     }
 
-    // Event listeners for the "No" button
-    noBtn.addEventListener('mouseover', moveNoBtnAndChangeMessage);
-    noBtn.addEventListener('click', moveNoBtnAndChangeMessage);
-    noBtn.addEventListener('touchstart', (e) => {
-      e.preventDefault(); // Prevent scrolling on touch
-      moveNoBtnAndChangeMessage();
-    });
-
-    // Event listener for the "Yes" button
-    yesBtn.addEventListener('click', () => {
-      // Hide main elements
-      questionText.style.display = 'none';
-      yesBtn.style.display = 'none';
-      noBtn.style.display = 'none';
-
-      // Display the acceptance message
-      messageBox.innerHTML = `
-        Awww 💍 You made my day! ❤️<br><br>
-        You just became the muse behind my favorite line—<br>
-        my heart’s got a new rhythm. 💖🎶<br><br>
-        <strong>I love you ❤️</strong>
-      `;
-
-      // Create and animate hearts
-      for (let i = 0; i < 40; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
-        heart.style.animationDuration = 5 + Math.random() * 5 + 's'; // Random duration for varied speed
-        hearts.appendChild(heart);
-        setTimeout(() => heart.remove(), 10000); // Remove heart after its animation finishes
-      }
-    });
-
-    // Set initial position and message when the page loads
-    // This call also ensures the "No" button is placed randomly from the start
-    moveNoBtnAndChangeMessage();
+    generateStars();
   </script>
 </body>
-  </html>
+</html>
